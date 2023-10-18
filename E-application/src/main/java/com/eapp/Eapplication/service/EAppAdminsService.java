@@ -1,5 +1,7 @@
 package com.eapp.Eapplication.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,10 @@ public class EAppAdminsService {
 	public AdminEntity createAdmin(AdminEntity entity) {
 		
 		return repository.save(entity);
+	}
+
+	public List<AdminEntity> getAllAdminData() {	
+		return repository.findAll();
 	}
 
 }
