@@ -11,6 +11,7 @@ public class EApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EApplication.class, args);
 		System.out.println("The project is started==>");
+		System.out.println("This is a dummy message");
 	}
 
 }
