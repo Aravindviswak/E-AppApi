@@ -1,1 +1,1 @@
-# E-AppApi
+# E-AppApi application
