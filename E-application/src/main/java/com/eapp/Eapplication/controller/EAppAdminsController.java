@@ -28,11 +28,25 @@ public class EAppAdminsController {
 	public EAppAdminsController(EAppAdminsService service) {
 		this.service = service;
 	}
-
+	
+	/*
+	 * Create a new admin record.
+	 * 
+	 * @param entity The admin entity to be created.
+	 * @return ResponseEntity with the created admin and HTTP status 201 (Created).
+	 */
+	
 	@PostMapping
 	public ResponseEntity<AdminEntity> createAdmin(@RequestBody AdminEntity entity) {
 		return new ResponseEntity<>(service.createAdmin(entity), HttpStatus.CREATED);
 	}
+	
+	/*
+	 * Retrieve all admin details.
+	 * 
+	 * @return ResponseEntity with a list of admin entities and HTTP status 200 (OK).
+	 * @throws DataNotFoundException if no data is found.
+	 */
 
 	@GetMapping
 	public ResponseEntity<List<AdminEntity>> getAllAdminData() throws DataNotFoundException {
@@ -43,6 +57,13 @@ public class EAppAdminsController {
 		return ResponseEntity.ok(data);
 	}
 	
+	/*
+	 * Retrieve admin details by ID.
+	 * 
+	 * @param id The ID of the admin entity to retrieve.
+	 * @return ResponseEntity with the admin entity and HTTP status 200 (OK).
+	 * @throws DataNotFoundException if the admin with the specified ID is not found.
+	 */
 	@GetMapping("{id}")
 	public ResponseEntity<AdminEntity> getAdminById(@PathVariable Long id) throws DataNotFoundException {
 	    Optional<AdminEntity> data = service.getAdminById(id);
@@ -50,18 +71,18 @@ public class EAppAdminsController {
 	    return ResponseEntity.ok(data.get());
 	   
 	}
+	/*
+	 * Update admin details by its ID.
+	 * 
+	 * @param id The ID of the admin entity to be updated.
+	 * @param updatedAdmin The updated admin entity.
+	 * @return ResponseEntity with the updated admin and HTTP status 200 (OK).
+	 * @throws DataNotFoundException if the admin with the specified ID is not found.
+	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<?> updateAdmin(@PathVariable Long id, @RequestBody AdminEntity updatedAdmin) {
-	    try {
-	        AdminEntity admin = service.updateAdmin(id, updatedAdmin);
-	        if (admin != null) {
-	            return ResponseEntity.ok(admin); // 200 OK with updated data
-	        } else {
-	            return ResponseEntity.notFound().build();// 404 Not Found if data doesn't exist
-	        }
-	    } catch (DataNotFoundException e) {
-	        return ResponseEntity.notFound().build(); // Handle the exception with 404 Not Found
-	    }
+	public ResponseEntity<AdminEntity> updateAdmin(@PathVariable Long id, @RequestBody AdminEntity updatedAdmin) throws DataNotFoundException {
+		 AdminEntity admin = service.updateAdmin(id, updatedAdmin);
+		return ResponseEntity.ok(admin);
 	}
 
 
