@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
@@ -61,6 +62,17 @@ public class EAppAdminsService {
 	    }
 	}
 
+	public boolean deleteAdminById(Long id) throws DataNotFoundException {
+	    if (repository.existsById(id)) {
+	        repository.deleteById(id);
+	        return true;
+	    }
+	    else {
+	    	 throw new  DataNotFoundException("The Amind is not existed with ID : "+id);
+	    }
+
+
+	}
 }
 	
 	

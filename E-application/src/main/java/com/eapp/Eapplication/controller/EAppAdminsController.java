@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -84,6 +85,22 @@ public class EAppAdminsController {
 		 AdminEntity admin = service.updateAdmin(id, updatedAdmin);
 		return ResponseEntity.ok(admin);
 	}
+	/*
+	 * Delete admin details by its ID
+	 * 
+	 * @param id the ID of the admin entity to delete
+	 * @return ResponseEntity with the delete admin and HTTP status 204
+	 * @throws DataNotFoundException if admin with the sprcified ID id not found.
+	 */
 
+	@DeleteMapping("{id}")
+	public ResponseEntity<?> deleteAdminById(@PathVariable Long id) throws DataNotFoundException {
+	    if (service.deleteAdminById(id)) {
+	        return ResponseEntity.ok("Admin deleted succesfully with Id : "+id); // 204 No Content for successful deletion
+	    } else {
+	        return ResponseEntity.notFound().build();
+	    }
+	}
+	
 
 }
