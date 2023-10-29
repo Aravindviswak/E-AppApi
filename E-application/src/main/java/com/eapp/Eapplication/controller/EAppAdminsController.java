@@ -1,8 +1,8 @@
 package com.eapp.Eapplication.controller;
 
+
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.eapp.Eapplication.entity.AdminEntity;
 import com.eapp.Eapplication.exception.DataNotFoundException;
 import com.eapp.Eapplication.service.EAppAdminsService;
@@ -37,8 +36,9 @@ public class EAppAdminsController {
 	 * @return ResponseEntity with the created admin and HTTP status 201 (Created).
 	 */
 	
+	
 	@PostMapping
-	public ResponseEntity<AdminEntity> createAdmin(@RequestBody AdminEntity entity) {
+	public ResponseEntity<AdminEntity> createAdmin(@RequestBody AdminEntity entity) {		
 		return new ResponseEntity<>(service.createAdmin(entity), HttpStatus.CREATED);
 	}
 	
