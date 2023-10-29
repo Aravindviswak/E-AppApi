@@ -17,6 +17,11 @@ import com.eapp.Eapplication.exception.DataNotFoundException;
 public class GlobalExceptionHandler {
 	private static final Logger logger=LoggerFactory.getLogger(GlobalExceptionHandler.class);
 	
+	/*
+	 * Handling the DataNotfoundexception
+	 * @param DataNotFoundException class to handle
+	 * returns ResponseEntity with ErrorResponse Details
+	 */
 	@ExceptionHandler(DataNotFoundException.class)
 	public ResponseEntity<ErrorResponse> handleDataNotFoundException(DataNotFoundException ex){
 		
